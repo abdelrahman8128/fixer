@@ -794,6 +794,9 @@ class _ProfilePageState extends State<ProfilePage>
                       padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 40),
                       child: FFButtonWidget(
                         onPressed: () async {
+                          AppCubit.get(context).getCarByNumberModel=null;
+                          AppCubit.get(context).loginByCodeModel=null;
+                          AppCubit.get(context).forgetPasswordModel=null;
                           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Login(),));
                         },
                         text: 'Log Out',

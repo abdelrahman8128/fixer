@@ -368,7 +368,7 @@ class _LoginStateState extends State<Login> {
                               ConditionalBuilder(
                                 condition: state is AppLoginLoadingState,
                                 builder: (BuildContext context) {
-                                  return CircularProgressIndicator(color: Colors.orange,);
+                                  return Center(child: CircularProgressIndicator(color: Colors.orange,));
                                 },
                                 fallback: (BuildContext context) {
                                   return  FFButtonWidget(

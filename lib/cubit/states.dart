@@ -22,3 +22,12 @@ class AppForgetPasswordErrorState extends AppCubitStates{
   final String error;
   AppForgetPasswordErrorState(this.error);
 }
+
+class AppGetCarByNumberLoadingState extends AppCubitStates{}
+
+class AppGetCarByNumberSuccessState extends AppCubitStates{}
+
+class AppGetCarByNumberErrorState extends AppCubitStates{
+  final String error;
+  AppGetCarByNumberErrorState(this.error);
+}

@@ -29,13 +29,11 @@ class EditCarModel extends FlutterFlowModel<MyCar> {
   TextEditingController? tempDefaultController3;
   String? Function(BuildContext, String?)? tempDefaultController2Validator;
   // State field(s) for emailField widget.
-  FocusNode? emailFieldFocusNode1;
-  TextEditingController? emailFieldController1;
-  String? Function(BuildContext, String?)? emailFieldController1Validator;
+  FocusNode? carNumberFocusNode1;
+  TextEditingController? carNumberController1;
+  String? Function(BuildContext, String?)? carNumberController1Validator;
   // State field(s) for emailField widget.
-  FocusNode? emailFieldFocusNode2;
-  TextEditingController? emailFieldController2;
-  String? Function(BuildContext, String?)? emailFieldController2Validator;
+
 
   /// Initialization and disposal methods.
 
@@ -57,11 +55,9 @@ class EditCarModel extends FlutterFlowModel<MyCar> {
     tempDefaultFocusNode2?.dispose();
     tempDefaultController2?.dispose();
 
-    emailFieldFocusNode1?.dispose();
-    emailFieldController1?.dispose();
+    carNumberFocusNode1?.dispose();
+    carNumberController1?.dispose();
 
-    emailFieldFocusNode2?.dispose();
-    emailFieldController2?.dispose();
   }
 
 /// Action blocks are added here.

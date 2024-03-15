@@ -19,7 +19,7 @@ class AppCubit extends Cubit<AppCubitStates> {
 
   LoginByCodeModel? loginByCodeModel;
   ForgetPasswordModel? forgetPasswordModel;
-  GetCarByNumberModel? getCarByNumberModel;
+  GetCarByNumberModel? getCarByNumberModel=null;
 
   void loginByCode({
     required String carCode,
@@ -74,22 +74,30 @@ class AppCubit extends Cubit<AppCubitStates> {
 
   void getCarByNumber({
     required String carNumber,
-  }) {
-    print(carNumber);
-    String url =
-        'https://fixer-backend-1.onrender.com/api/V1/auth/Garage/'+carNumber;
-    print (url);
-    final headers = {'Content-Type': 'application/json'};
-    read(
-      Uri.parse(url),
-      headers: headers,
-    ).then((response) {
-      getCarByNumberModel =
-          GetCarByNumberModel.fromJson(jsonDecode(response));
-
-      if (getCarByNumberModel?.color != 'fail') {
-        showToast('password seeeeeeeeeeeeeeeeent to your email');
-      }
-    });
+  }) async{
+    if (getCarByNumberModel == null)
+    {
+      emit(AppGetCarByNumberLoadingState());
+      String url =
+          'https://fixer-backend-1.onrender.com/api/V1/Garage/' + carNumber;
+      final headers = {'Content-Type': 'application/json'};
+      return read(
+        Uri.parse(url),
+        headers: headers,
+      ).then((response) {
+        getCarByNumberModel =
+            GetCarByNumberModel.fromJson(jsonDecode(response));
+        //getCarByNumberModel=null;
+//print(getCarByNumberModel?.id);
+        if (getCarByNumberModel?.id != null) {
+          emit(AppGetCarByNumberSuccessState());
+        } else {
+          emit(AppGetCarByNumberErrorState(response.toString()));
+          showToast('Failed to load, please try to reopen the app');
+        }
+      });
+    }
   }
+
+
 }
