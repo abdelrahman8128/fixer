@@ -92,16 +92,16 @@ class _MyCarState extends State<MyCar>
         builder:(context, state) {
           _model = createModel(context, () => EditCarModel());
 
-          _model.carNameController ??= TextEditingController(text: '${AppCubit.get(context).getCarByNumberModel?.brand}  ${AppCubit.get(context).getCarByNumberModel?.category}');
+          _model.carNameController ??= TextEditingController(text: '${AppCubit.get(context).getCarByNumberModel?.brand??''}  ${AppCubit.get(context).getCarByNumberModel?.category??''}');
           _model.carNameFocusNode ??= FocusNode();
 
-          _model.carColorController ??= TextEditingController(text: '${AppCubit.get(context).getCarByNumberModel?.color}');
+          _model.carColorController ??= TextEditingController(text: '${AppCubit.get(context).getCarByNumberModel?.color??''}');
           _model.carColorFocusNode ??= FocusNode();
 
-          _model.carMileageController ??= TextEditingController(text: '${AppCubit.get(context).getCarByNumberModel?.model}');
+          _model.carMileageController ??= TextEditingController(text: '${AppCubit.get(context).getCarByNumberModel?.model??''}');
           _model.carMileageFocusNode ??= FocusNode();
 
-          _model.tempDefaultController1 ??= TextEditingController(text: 'distance');
+          _model.tempDefaultController1 ??= TextEditingController(text: '${AppCubit.get(context).getCarByNumberModel?.distance??''}');
           _model.tempDefaultFocusNode1 ??= FocusNode();
 
           _model.tempDefaultController2 ??=
@@ -109,10 +109,10 @@ class _MyCarState extends State<MyCar>
           _model.tempDefaultFocusNode2 ??= FocusNode();
 
           _model.tempDefaultController3 ??=
-              TextEditingController(text: 'motor number');
+              TextEditingController(text: '${AppCubit.get(context).getCarByNumberModel?.motorNumber??''}');
           _model.tempDefaultFocusNode3 ??= FocusNode();
 
-          _model.carNumberController1 ??= TextEditingController(text: '${AppCubit.get(context).getCarByNumberModel?.carNumber}');
+          _model.carNumberController1 ??= TextEditingController(text: '${AppCubit.get(context).getCarByNumberModel?.carNumber??''}');
           _model.carNumberFocusNode1 ??= FocusNode();
 
 

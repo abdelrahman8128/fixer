@@ -532,7 +532,7 @@ class _HomePageState extends State<HomePage>
                                 padding:
                                 EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
                                 child: AutoSizeText(
-                                  '15/01/2024',
+                                  '${AppCubit.get(context).getCarByNumberModel?.nextRepairDate?.day}/${AppCubit.get(context).getCarByNumberModel?.nextRepairDate?.month}/${AppCubit.get(context).getCarByNumberModel?.nextRepairDate?.year}',
                                   textAlign: TextAlign.center,
                                   style: FlutterFlowTheme.of(context)
                                       .titleMedium

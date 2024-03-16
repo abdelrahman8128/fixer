@@ -16,8 +16,10 @@ class GetCarByNumberModel{
   int? periodicRepairs;
   int? nonPeriodicRepairs;
   bool? repairing;
+  int? distance;
+  String?motorNumber;
   List<dynamic>?componentState;
-
+  DateTime?nextRepairDate;
 
   GetCarByNumberModel.fromJson(Map<String,dynamic>json)
   {
@@ -38,7 +40,10 @@ class GetCarByNumberModel{
     periodicRepairs=json['periodicRepairs'];
     nonPeriodicRepairs=json['nonPeriodicRepairs'];
     repairing=json['repairing'];
-    List<dynamic>?componentState=json['componentState'];
+    componentState=json['componentState'];
+    distance=json['distances'];
+    motorNumber=json['motorNumber'];
+    nextRepairDate=DateTime.parse(json['nextRepairDate']);
 
 
 
