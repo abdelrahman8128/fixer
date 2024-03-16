@@ -7,7 +7,7 @@ class DioHelper {
       BaseOptions(
         baseUrl: 'https://fixer-backend-1.onrender.com/api/V1/auth/',
         receiveDataWhenStatusError: true,
-        headers: {'Content-Type': 'application/json'},
+        headers: {'Content-Type': 'application/json',},
       ),
     );
   }
@@ -24,10 +24,8 @@ class DioHelper {
     required String url,
     required Map<String, dynamic> data,
   }) async {
-    dio.options.headers = {
 
-    };
-    return await dio.post(url, data: data);
+    return await dio.post(url, data: data,);
   }
 
 }

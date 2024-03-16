@@ -1,4 +1,9 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:fixer_app/cubit/cubit.dart';
+import 'package:fixer_app/cubit/states.dart';
 import 'package:fixer_app/screens/services_detailes/services_details.dart';
+import 'package:fixer_app/shared/components.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -126,7 +131,7 @@ class _ServicesPageState extends State<ServicesPage>
   void initState() {
     super.initState();
     _model = createModel(context, () => ServicesPageModel());
-
+    AppCubit.get(context).getCarServicesByNumber(carNumber: AppCubit.get(context).loginByCodeModel!.carData!.carNumber!);
     setupAnimations(
       animationsMap.values.where((anim) =>
       anim.trigger == AnimationTrigger.onActionTrigger ||
@@ -153,456 +158,82 @@ class _ServicesPageState extends State<ServicesPage>
       );
     }
 
-    return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
-      child: Scaffold(
-        key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-          automaticallyImplyLeading: false,
-          title: Text(
-            'Service Appointments',
-            style: FlutterFlowTheme.of(context).headlineMedium,
-          ),
-          actions: [],
-          centerTitle: false,
-          elevation: 0,
-        ),
-        body: SafeArea(
-          top: true,
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
-                  child: Text(
-                    'In Progress',
-                    style: FlutterFlowTheme.of(context).bodyMedium,
-                  ).animateOnPageLoad(
-                      animationsMap['textOnPageLoadAnimation1']!),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
-                  child: Builder(
-                    builder: (context) {
-                      if(loadingInProgress){
-                        return Center(
-                          child: SizedBox(
-                            width: 50,
-                            height: 50,
-                            child: SpinKitCubeGrid(
-                              color: FlutterFlowTheme.of(context).primary,
-                              size: 50,
-                            ),
-                          ),
-                        );
-                      }
-                      else {
-                        if (false) {
-                          return Container();
-                        }
-                        return ListView(
-                          padding: EdgeInsets.zero,
-                          primary: false,
-                          shrinkWrap: true,
-                          scrollDirection: Axis.vertical,
-                          children: [
-                            Padding(
-                              padding:
-                              EdgeInsetsDirectional.fromSTEB(16, 8, 16, 0),
-                              child: InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => ServicesDetails(),));
-                                },
-                                child: Container(
-                                  width: MediaQuery.sizeOf(context).width * 0.84,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        blurRadius: 4,
-                                        color: Color(0x2B202529),
-                                        offset: Offset(0, 2),
-                                      )
-                                    ],
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            8, 0, 0, 0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Expanded(
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(8, 4, 0, 4),
-                                                child: Column(
-                                                  mainAxisSize:
-                                                  MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .center,
-                                                  crossAxisAlignment:
-                                                  CrossAxisAlignment
-                                                      .start,
-                                                  children: [
-                                                    Text(
-                                                      '120\$',
-                                                      style:
-                                                      FlutterFlowTheme.of(
-                                                          context)
-                                                          .bodySmall
-                                                          .override(
-                                                        fontFamily:
-                                                        'Outfit',
-                                                        fontSize: 12,
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                      EdgeInsetsDirectional
-                                                          .fromSTEB(
-                                                          0, 4, 0, 0),
-                                                      child: Text(
-                                                        '3 Services',
-                                                        style: FlutterFlowTheme
-                                                            .of(context)
-                                                            .titleMedium,
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                      EdgeInsetsDirectional
-                                                          .fromSTEB(
-                                                          0, 4, 0, 0),
-                                                      child: Text(
-                                                        '#123456',
-                                                        style: FlutterFlowTheme
-                                                            .of(context)
-                                                            .bodySmall,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                            ClipRRect(
-                                              borderRadius: BorderRadius.only(
-                                                bottomLeft:
-                                                Radius.circular(0),
-                                                bottomRight:
-                                                Radius.circular(12),
-                                                topLeft: Radius.circular(0),
-                                                topRight: Radius.circular(12),
-                                              ),
-                                              child: Image.asset(
-                                                'assets/images/41723171321.png',
-                                                width:
-                                                MediaQuery.sizeOf(context)
-                                                    .width *
-                                                    0.4,
-                                                height: 100,
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            12, 0, 16, 8),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Card(
-                                              clipBehavior:
-                                              Clip.antiAliasWithSaveLayer,
-                                              color: FlutterFlowTheme.of(context)
-                                                  .alternate,
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                BorderRadius.circular(40),
-                                              ),
-                                              child: Padding(
-                                                padding: EdgeInsets.all(8),
-                                                child: Icon(
-                                                  Icons.access_time_rounded,
-                                                  color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryText,
-                                                  size: 20,
-                                                ),
-                                              ),
-                                            ),
-                                            Expanded(
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(12, 0, 0, 0),
-                                                child: Text(
-                                                  'In Progress',
-                                                  style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodySmall,
-                                                ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  12, 0, 0, 0),
-                                              child: Text(
-                                                dateTimeFormat(
-                                                    'relative',
-                                                    DateTime(2024,1,25)),
-                                                style:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ).animateOnPageLoad(animationsMap[
-                              'containerOnPageLoadAnimation1']!),
-                            ),
-                          ],
-                        );
-                      }
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16, 16, 0, 8),
-                  child: Text(
-                    'Completed Tickets',
-                    style: FlutterFlowTheme.of(context).bodyMedium,
-                  ).animateOnPageLoad(
-                      animationsMap['textOnPageLoadAnimation2']!),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 16),
-                  child: Builder(
-                    builder: (context) {
-                      if(loadingInProgress){
-                        return Center(
-                          child: SizedBox(
-                            width: 50,
-                            height: 50,
-                            child: SpinKitCubeGrid(
-                              color: FlutterFlowTheme.of(context).primary,
-                              size: 50,
-                            ),
-                          ),
-                        );
-                      }
-                      else {
-                        if (false) {
-                          return Container();
-                        }
-                        return ListView.builder(
-                          padding: EdgeInsets.zero,
-                          primary: false,
-                          shrinkWrap: true,
-                          scrollDirection: Axis.vertical,
-                          itemCount: 3,
-                          itemBuilder: (context, listViewIndex) {
-                            /*final listViewCarAppointmentsRecord =
-                            listViewCarAppointmentsRecordList[listViewIndex];*/
-                            return Padding(
-                              padding:
-                              EdgeInsetsDirectional.fromSTEB(16, 8, 16, 0),
-                              child: InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => ServicesDetails(),));
-                                },
-                                child: Container(
-                                  width: 100,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        blurRadius: 4,
-                                        color: Color(0x2B202529),
-                                        offset: Offset(0, 2),
-                                      )
-                                    ],
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            8, 0, 0, 0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Expanded(
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(8, 4, 0, 4),
-                                                child: Column(
-                                                  mainAxisSize:
-                                                  MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .center,
-                                                  crossAxisAlignment:
-                                                  CrossAxisAlignment
-                                                      .start,
-                                                  children: [
-                                                    Text(
-                                                      '100\$',
-                                                      style:
-                                                      FlutterFlowTheme.of(
-                                                          context)
-                                                          .bodySmall
-                                                          .override(
-                                                        fontFamily:
-                                                        'Outfit',
-                                                        fontSize: 12,
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                      EdgeInsetsDirectional
-                                                          .fromSTEB(
-                                                          0, 4, 0, 0),
-                                                      child: Text(
-                                                        '2 Services',
-                                                        style: FlutterFlowTheme
-                                                            .of(context)
-                                                            .titleMedium,
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                      EdgeInsetsDirectional
-                                                          .fromSTEB(
-                                                          0, 4, 0, 0),
-                                                      child: Text(
-                                                        '#123',
-                                                        style: FlutterFlowTheme
-                                                            .of(context)
-                                                            .bodySmall,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                            ClipRRect(
-                                              borderRadius: BorderRadius.only(
-                                                bottomLeft:
-                                                Radius.circular(0),
-                                                bottomRight:
-                                                Radius.circular(12),
-                                                topLeft: Radius.circular(0),
-                                                topRight: Radius.circular(12),
-                                              ),
-                                              child: Image.asset(
-                                                'assets/images/41723171321.png',
-                                                width: 160,
-                                                height: 100,
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            12, 0, 16, 8),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Card(
-                                              clipBehavior:
-                                              Clip.antiAliasWithSaveLayer,
-                                              color: FlutterFlowTheme.of(context)
-                                                  .primaryText,
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                BorderRadius.circular(40),
-                                              ),
-                                              child: Padding(
-                                                padding: EdgeInsets.all(8),
-                                                child: Icon(
-                                                  Icons.done_rounded,
-                                                  color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                                  size: 24,
-                                                ),
-                                              ),
-                                            ),
-                                            Expanded(
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(12, 0, 0, 0),
-                                                child: Text(
-                                                  'Completed On',
-                                                  style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodySmall,
-                                                ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  12, 0, 0, 0),
-                                              child: Text(
-                                                dateTimeFormat(
-                                                    'E, d MMM y',
-                                                    DateTime(2024,1,1)),
-                                                style:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ).animateOnPageLoad(animationsMap[
-                              'containerOnPageLoadAnimation2']!),
-                            );
-                          },
-                        );
-                      }
-                    },
-                  ),
-                ),
-              ],
+    return BlocConsumer<AppCubit,AppCubitStates>(
+      listener: (context, state) {
+
+      },
+      builder: (context, state) {
+        return GestureDetector(
+          onTap: () => _model.unfocusNode.canRequestFocus
+              ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+              : FocusScope.of(context).unfocus(),
+          child: Scaffold(
+            key: scaffoldKey,
+            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+            appBar: AppBar(
+              backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+              automaticallyImplyLeading: false,
+              title: Text(
+                'Service Appointments',
+                style: FlutterFlowTheme.of(context).headlineMedium,
+              ),
+              actions: [],
+              centerTitle: false,
+              elevation: 0,
             ),
+            body:ConditionalBuilder(
+                condition: state is AppGetCarServicesByNumberLoadingState,
+                builder:(context) =>  Center(child: CircularProgressIndicator(color: Colors.orange,),),
+                fallback: (context) =>  SafeArea(
+                  top: true,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 16),
+                          child: Builder(
+                            builder: (context) {
+                              if(loadingInProgress){
+                                return Center(
+                                  child: SizedBox(
+                                    width: 50,
+                                    height: 50,
+                                    child: SpinKitCubeGrid(
+                                      color: FlutterFlowTheme.of(context).primary,
+                                      size: 50,
+                                    ),
+                                  ),
+                                );
+                              }
+                              else {
+                                if (false) {
+                                  return Container();
+                                }
+                                return ListView.builder(
+                                  padding: EdgeInsets.zero,
+                                  primary: false,
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.vertical,
+                                  itemCount: AppCubit.get(context).getServicesModel!.visits.length,
+                                  itemBuilder: (context, index) =>serviceItemBuilder(AppCubit.get(context).getServicesModel!.visits[index]),
+                                );
+                              }
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+            )
+
+
           ),
-        ),
-      ),
+        );
+
+      },
     );
   }
 }

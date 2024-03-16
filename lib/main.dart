@@ -33,11 +33,15 @@ class MyApp extends StatelessWidget {
       builder: (context, state) {
         return AdaptiveTheme(
           light: ThemeData(
+            colorScheme: ColorScheme.light(primary: Colors.deepOrange),
+
             useMaterial3: true,
             brightness: Brightness.light,
 
           ),
           dark: ThemeData(
+            colorScheme: ColorScheme.dark(primary: Colors.deepOrange),
+
             useMaterial3: true,
             brightness: Brightness.dark,
 

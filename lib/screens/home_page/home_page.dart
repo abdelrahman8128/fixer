@@ -62,8 +62,7 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     super.initState();
-
-    AppCubit.get(context).getCarByNumber(carNumber: AppCubit.get(context).loginByCodeModel!.data!.carNumber??'');
+    AppCubit.get(context).getHomePrams(carNumber: AppCubit.get(context).loginByCodeModel!.userData!.carNumber!);
 
     _model = createModel(context, () => HomePageModel());
 
@@ -100,8 +99,9 @@ class _HomePageState extends State<HomePage>
       },
       builder: (context, state) {
 
-        return ConditionalBuilder(
-            condition: state is AppGetCarByNumberLoadingState,
+
+          return ConditionalBuilder(
+            condition: state is AppGetHomePramsLoadingState,
             builder: (context) => Center(child: CircularProgressIndicator(color: Colors.orange,)),
             fallback: (context) => SafeArea(
               top: true,
@@ -154,7 +154,7 @@ class _HomePageState extends State<HomePage>
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
                       child: LinearPercentIndicator(
-                        percent: 0.4,
+                        percent: AppCubit.get(context).getHomePramsModel?.completedServicesRatio??0,
                         width: MediaQuery.sizeOf(context).width * 0.9,
                         lineHeight: 24,
                         animation: true,
@@ -201,9 +201,7 @@ class _HomePageState extends State<HomePage>
                                 ),
                               ),
                               Text(
-                                dateTimeFormat(
-                                    'd MMM y',
-                                    DateTime(2024,1,13)),
+                               '${AppCubit.get(context).getHomePramsModel?.lastRepairDate?.day??'-'}/${AppCubit.get(context).getHomePramsModel?.lastRepairDate?.month??'-'}/${AppCubit.get(context).getHomePramsModel?.lastRepairDate?.year??'-'}',
                                 style: FlutterFlowTheme.of(context).displaySmall.override(
                                     fontFamily: 'Outfit',
                                     fontSize: 20
@@ -223,7 +221,7 @@ class _HomePageState extends State<HomePage>
                                 ),
                               ),
                               Text(
-                                'RePairing',
+                                '${AppCubit.get(context).getHomePramsModel?.state}',
                                 style: FlutterFlowTheme.of(context)
                                     .displaySmall
                                     .override(
@@ -281,30 +279,6 @@ class _HomePageState extends State<HomePage>
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        'Fixer Assistant',
-                                        textAlign: TextAlign.start,
-                                        style: GoogleFonts.getFont(
-                                          'Lexend Deca',
-                                          color: Color(0xB3FFFFFF),
-                                          fontSize: 12,
-                                        ),
-                                      ),
-                                      Text(
-                                        '13/01/24 4:30pm',
-                                        textAlign: TextAlign.end,
-                                        style: GoogleFonts.getFont(
-                                          'Lexend Deca',
-                                          color: Color(0xB3FFFFFF),
-                                          fontSize: 12,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
                                   Padding(
                                     padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
@@ -312,7 +286,8 @@ class _HomePageState extends State<HomePage>
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Text(
-                                          'The Expected completion date is 15/01/24',
+                                          'The Expected completion date ${AppCubit.get(context).getHomePramsModel?.expectedDate?.day}/${AppCubit.get(context).getHomePramsModel?.expectedDate?.month}/${AppCubit.get(context).getHomePramsModel?.expectedDate?.year}',
+
                                           style: FlutterFlowTheme.of(context)
                                               .titleSmall
                                               .override(
@@ -392,7 +367,7 @@ class _HomePageState extends State<HomePage>
                                     padding:
                                     EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
                                     child: AutoSizeText(
-                                      '2',
+                                      '${AppCubit.get(context).getHomePramsModel?.periodicRepairs}',
                                       textAlign: TextAlign.center,
                                       style: FlutterFlowTheme.of(context)
                                           .titleMedium
@@ -408,7 +383,7 @@ class _HomePageState extends State<HomePage>
                                       padding:
                                       EdgeInsetsDirectional.fromSTEB(8, 4, 8, 0),
                                       child: Text(
-                                        'Number of repairs',
+                                        'Periodic repairs',
                                         textAlign: TextAlign.center,
                                         style: GoogleFonts.getFont(
                                           'Lexend Deca',
@@ -460,7 +435,7 @@ class _HomePageState extends State<HomePage>
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
                                   child: AutoSizeText(
-                                    '5',
+                                    '${AppCubit.get(context).getHomePramsModel?.nonPeriodicRepairs}',
                                     textAlign: TextAlign.center,
                                     style: FlutterFlowTheme.of(context)
                                         .titleMedium
@@ -476,7 +451,7 @@ class _HomePageState extends State<HomePage>
                                     padding:
                                     EdgeInsetsDirectional.fromSTEB(8, 4, 8, 0),
                                     child: Text(
-                                      'number of cheks',
+                                      'Non periodic repairs',
                                       textAlign: TextAlign.center,
                                       style: GoogleFonts.getFont(
                                         'Lexend Deca',
@@ -532,7 +507,7 @@ class _HomePageState extends State<HomePage>
                                 padding:
                                 EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
                                 child: AutoSizeText(
-                                  '${AppCubit.get(context).getCarByNumberModel?.nextRepairDate?.day}/${AppCubit.get(context).getCarByNumberModel?.nextRepairDate?.month}/${AppCubit.get(context).getCarByNumberModel?.nextRepairDate?.year}',
+                                  '${AppCubit.get(context).getHomePramsModel?.nextRepairDate?.day}/${AppCubit.get(context).getHomePramsModel?.nextRepairDate?.month}/${AppCubit.get(context).getHomePramsModel?.nextRepairDate?.year}',
                                   textAlign: TextAlign.center,
                                   style: FlutterFlowTheme.of(context)
                                       .titleMedium

@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
+import '../../models/get_services_model.dart';
 import 'periodic_services_model.dart';
 export 'periodic_services_model.dart';
 
@@ -231,7 +232,7 @@ class _PeriodicServicesState extends State<PeriodicServices>
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => ServicesDetails(),));
+                               // Navigator.push(context, MaterialPageRoute(builder: (context) => ServicesDetails(),));
                               },
                               child: Container(
                                 width: MediaQuery.sizeOf(context).width * 0.84,
@@ -444,7 +445,7 @@ class _PeriodicServicesState extends State<PeriodicServices>
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => ServicesDetails(),));
+                              //  Navigator.push(context, MaterialPageRoute(builder: (context) => ServicesDetails(),));
                               },
                               child: Container(
                                 width: 100,

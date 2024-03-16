@@ -1,19 +1,24 @@
+import 'package:fixer_app/models/get_services_model.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
+import '../../shared/components.dart';
 import 'services_details_model.dart';
 export 'services_details_model.dart';
 
 class ServicesDetails extends StatefulWidget {
-  const ServicesDetails({
+  Visit? visit;
+   ServicesDetails({
     super.key,
-  });
+    required Visit ,
+  }){
+    visit = Visit;
+  }
 
   @override
-  State<ServicesDetails> createState() =>
-      _ServicesDetailsState();
+  State<ServicesDetails> createState() => _ServicesDetailsState(visit);
 }
 
 class _ServicesDetailsState extends State<ServicesDetails>
@@ -173,6 +178,10 @@ class _ServicesDetailsState extends State<ServicesDetails>
       ],
     ),
   };
+Visit? visit;
+  _ServicesDetailsState(Visit? Visit){
+    visit=Visit;
+  }
 
   @override
   void initState() {
@@ -181,7 +190,7 @@ class _ServicesDetailsState extends State<ServicesDetails>
 
     setupAnimations(
       animationsMap.values.where((anim) =>
-      anim.trigger == AnimationTrigger.onActionTrigger ||
+          anim.trigger == AnimationTrigger.onActionTrigger ||
           !anim.applyInitialState),
       this,
     );
@@ -234,7 +243,7 @@ class _ServicesDetailsState extends State<ServicesDetails>
                         children: [
                           Padding(
                             padding:
-                            EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                                EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                             child: FlutterFlowIconButton(
                               borderColor: Colors.transparent,
                               borderRadius: 30,
@@ -253,21 +262,17 @@ class _ServicesDetailsState extends State<ServicesDetails>
                           Expanded(
                             child: Padding(
                               padding:
-                              EdgeInsetsDirectional.fromSTEB(4, 0, 16, 0),
+                                  EdgeInsetsDirectional.fromSTEB(4, 0, 16, 0),
                               child: Text(
-                                formatNumber(
-                                  1234,
-                                  formatType: FormatType.decimal,
-                                  decimalType: DecimalType.automatic,
-                                  currency: '#',
-                                ),
+                                '#${visit?.id}',
+
                                 textAlign: TextAlign.end,
                                 style: FlutterFlowTheme.of(context)
                                     .headlineMedium
                                     .override(
-                                  fontFamily: 'Outfit',
-                                  fontSize: 16,
-                                ),
+                                      fontFamily: 'Outfit',
+                                      fontSize: 16,
+                                    ),
                               ),
                             ),
                           ),
@@ -328,464 +333,550 @@ class _ServicesDetailsState extends State<ServicesDetails>
                                   width: double.infinity,
                                   height: 210,
                                   fit: BoxFit.cover,
-                                ).animateOnPageLoad(animationsMap[
-                                'imageOnPageLoadAnimation']!),
+                                ).animateOnPageLoad(
+                                    animationsMap['imageOnPageLoadAnimation']!),
                               ),
                             ],
                           ),
                         ),
                       ],
                     ),
-                    ListView(
-                      padding: EdgeInsets.zero,
-                      primary: false,
-                      shrinkWrap: true,
-                      scrollDirection: Axis.vertical,
-                      children: [
-                        Stack(
-                          children: [
-                            Container(
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
-                              ),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    12, 12, 12, 0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 4, 0, 0),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Container(
-                                            width: 36,
-                                            height: 36,
-                                            decoration: BoxDecoration(
-                                              color:
-                                              FlutterFlowTheme.of(context)
-                                                  .alternate,
-                                              shape: BoxShape.circle,
-                                            ),
-                                            child: Padding(
-                                              padding: EdgeInsets.all(8),
-                                              child: Icon(
-                                                Icons.access_time_rounded,
-                                                color:
-                                                FlutterFlowTheme.of(context)
-                                                    .secondaryText,
-                                                size: 20,
-                                              ),
-                                            ),
-                                          ),
-                                          Container(
-                                            width: 4,
-                                            height: 60,
-                                            decoration: BoxDecoration(
-                                              color:
-                                              FlutterFlowTheme.of(context)
-                                                  .alternate,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            12, 0, 0, 0),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'Service Complete',
-                                              style:
-                                              FlutterFlowTheme.of(context)
-                                                  .headlineSmall,
-                                            ),
-                                            Text(
-                                              'Checked in at: 4:30pm',
-                                              style:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodySmall,
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 4, 0, 0),
-                                              child: Text(
-                                                'Your car has been complete you may now go and pay for your service at the counter.',
-                                                style:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodySmall,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ).animateOnPageLoad(animationsMap[
-                            'containerOnPageLoadAnimation1']!),
-                          ],
-                        ),
-                        Stack(
-                          children: [
-                            Container(
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
-                              ),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    12, 0, 12, 0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Container(
-                                          width: 36,
-                                          height: 36,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .alternate,
-                                            shape: BoxShape.circle,
-                                          ),
-                                          child: Padding(
-                                            padding: EdgeInsets.all(8),
-                                            child: Icon(
-                                              Icons.access_time_rounded,
-                                              color:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondaryText,
-                                              size: 20,
-                                            ),
-                                          ),
-                                        ),
-                                        Container(
-                                          width: 4,
-                                          height: 60,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .alternate,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            12, 0, 0, 0),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'Post Service Check',
-                                              style:
-                                              FlutterFlowTheme.of(context)
-                                                  .headlineSmall,
-                                            ),
-                                            Text(
-                                              'Checked in at: 4:30pm',
-                                              style:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodySmall,
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 4, 0, 0),
-                                              child: Text(
-                                                'Your car is being evaluated by our tech, we are topping off your liquids and making one more quality check.',
-                                                style:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodySmall,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ).animateOnPageLoad(animationsMap[
-                            'containerOnPageLoadAnimation2']!),
-                          ],
-                        ),
-                        Stack(
-                          children: [
-                            Container(
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
-                              ),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    12, 0, 12, 0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Container(
-                                          width: 36,
-                                          height: 36,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .alternate,
-                                            shape: BoxShape.circle,
-                                          ),
-                                          child: Padding(
-                                            padding: EdgeInsets.all(8),
-                                            child: Icon(
-                                              Icons.access_time_rounded,
-                                              color:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondaryText,
-                                              size: 20,
-                                            ),
-                                          ),
-                                        ),
-                                        Container(
-                                          width: 4,
-                                          height: 60,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .alternate,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            12, 0, 0, 0),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'In Bay -- Changing Oil',
-                                              style:
-                                              FlutterFlowTheme.of(context)
-                                                  .headlineSmall,
-                                            ),
-                                            Text(
-                                              'Started at: 4:43pm',
-                                              style:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodySmall,
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 4, 0, 0),
-                                              child: Text(
-                                                'Your car is currently in the bay and our technicians are changing your oil right now.',
-                                                style:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodySmall,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ).animateOnPageLoad(animationsMap[
-                            'containerOnPageLoadAnimation3']!),
-                          ],
-                        ),
-                        Container(
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            color:
-                            FlutterFlowTheme.of(context).primaryBackground,
+                    // ListView(
+                    //   padding: EdgeInsets.zero,
+                    //   primary: false,
+                    //   shrinkWrap: true,
+                    //   scrollDirection: Axis.vertical,
+                    //   children: [
+                    //     Stack(
+                    //       children: [
+                    //         Container(
+                    //           width: double.infinity,
+                    //           decoration: BoxDecoration(
+                    //             color: FlutterFlowTheme.of(context)
+                    //                 .primaryBackground,
+                    //           ),
+                    //           child: Padding(
+                    //             padding: EdgeInsetsDirectional.fromSTEB(
+                    //                 12, 12, 12, 0),
+                    //             child: Row(
+                    //               mainAxisSize: MainAxisSize.max,
+                    //               crossAxisAlignment: CrossAxisAlignment.start,
+                    //               children: [
+                    //                 Padding(
+                    //                   padding: EdgeInsetsDirectional.fromSTEB(
+                    //                       0, 4, 0, 0),
+                    //                   child: Column(
+                    //                     mainAxisSize: MainAxisSize.max,
+                    //                     children: [
+                    //                       Container(
+                    //                         width: 36,
+                    //                         height: 36,
+                    //                         decoration: BoxDecoration(
+                    //                           color:
+                    //                           FlutterFlowTheme.of(context)
+                    //                               .alternate,
+                    //                           shape: BoxShape.circle,
+                    //                         ),
+                    //                         child: Padding(
+                    //                           padding: EdgeInsets.all(8),
+                    //                           child: Icon(
+                    //                             Icons.access_time_rounded,
+                    //                             color:
+                    //                             FlutterFlowTheme.of(context)
+                    //                                 .secondaryText,
+                    //                             size: 20,
+                    //                           ),
+                    //                         ),
+                    //                       ),
+                    //                       Container(
+                    //                         width: 4,
+                    //                         height: 60,
+                    //                         decoration: BoxDecoration(
+                    //                           color:
+                    //                           FlutterFlowTheme.of(context)
+                    //                               .alternate,
+                    //                         ),
+                    //                       ),
+                    //                     ],
+                    //                   ),
+                    //                 ),
+                    //                 Expanded(
+                    //                   child: Padding(
+                    //                     padding: EdgeInsetsDirectional.fromSTEB(
+                    //                         12, 0, 0, 0),
+                    //                     child: Column(
+                    //                       mainAxisSize: MainAxisSize.max,
+                    //                       crossAxisAlignment:
+                    //                       CrossAxisAlignment.start,
+                    //                       children: [
+                    //                         Text(
+                    //                           'Service Complete',
+                    //                           style:
+                    //                           FlutterFlowTheme.of(context)
+                    //                               .headlineSmall,
+                    //                         ),
+                    //                         Text(
+                    //                           'Checked in at: 4:30pm',
+                    //                           style:
+                    //                           FlutterFlowTheme.of(context)
+                    //                               .bodySmall,
+                    //                         ),
+                    //                         Padding(
+                    //                           padding: EdgeInsetsDirectional
+                    //                               .fromSTEB(0, 4, 0, 0),
+                    //                           child: Text(
+                    //                             'Your car has been complete you may now go and pay for your service at the counter.',
+                    //                             style:
+                    //                             FlutterFlowTheme.of(context)
+                    //                                 .bodySmall,
+                    //                           ),
+                    //                         ),
+                    //                       ],
+                    //                     ),
+                    //                   ),
+                    //                 ),
+                    //               ],
+                    //             ),
+                    //           ),
+                    //         ).animateOnPageLoad(animationsMap[
+                    //         'containerOnPageLoadAnimation1']!),
+                    //       ],
+                    //     ),
+                    //     Stack(
+                    //       children: [
+                    //         Container(
+                    //           width: double.infinity,
+                    //           decoration: BoxDecoration(
+                    //             color: FlutterFlowTheme.of(context)
+                    //                 .primaryBackground,
+                    //           ),
+                    //           child: Padding(
+                    //             padding: EdgeInsetsDirectional.fromSTEB(
+                    //                 12, 0, 12, 0),
+                    //             child: Row(
+                    //               mainAxisSize: MainAxisSize.max,
+                    //               crossAxisAlignment: CrossAxisAlignment.start,
+                    //               children: [
+                    //                 Column(
+                    //                   mainAxisSize: MainAxisSize.max,
+                    //                   children: [
+                    //                     Container(
+                    //                       width: 36,
+                    //                       height: 36,
+                    //                       decoration: BoxDecoration(
+                    //                         color: FlutterFlowTheme.of(context)
+                    //                             .alternate,
+                    //                         shape: BoxShape.circle,
+                    //                       ),
+                    //                       child: Padding(
+                    //                         padding: EdgeInsets.all(8),
+                    //                         child: Icon(
+                    //                           Icons.access_time_rounded,
+                    //                           color:
+                    //                           FlutterFlowTheme.of(context)
+                    //                               .secondaryText,
+                    //                           size: 20,
+                    //                         ),
+                    //                       ),
+                    //                     ),
+                    //                     Container(
+                    //                       width: 4,
+                    //                       height: 60,
+                    //                       decoration: BoxDecoration(
+                    //                         color: FlutterFlowTheme.of(context)
+                    //                             .alternate,
+                    //                       ),
+                    //                     ),
+                    //                   ],
+                    //                 ),
+                    //                 Expanded(
+                    //                   child: Padding(
+                    //                     padding: EdgeInsetsDirectional.fromSTEB(
+                    //                         12, 0, 0, 0),
+                    //                     child: Column(
+                    //                       mainAxisSize: MainAxisSize.max,
+                    //                       crossAxisAlignment:
+                    //                       CrossAxisAlignment.start,
+                    //                       children: [
+                    //                         Text(
+                    //                           'Post Service Check',
+                    //                           style:
+                    //                           FlutterFlowTheme.of(context)
+                    //                               .headlineSmall,
+                    //                         ),
+                    //                         Text(
+                    //                           'Checked in at: 4:30pm',
+                    //                           style:
+                    //                           FlutterFlowTheme.of(context)
+                    //                               .bodySmall,
+                    //                         ),
+                    //                         Padding(
+                    //                           padding: EdgeInsetsDirectional
+                    //                               .fromSTEB(0, 4, 0, 0),
+                    //                           child: Text(
+                    //                             'Your car is being evaluated by our tech, we are topping off your liquids and making one more quality check.',
+                    //                             style:
+                    //                             FlutterFlowTheme.of(context)
+                    //                                 .bodySmall,
+                    //                           ),
+                    //                         ),
+                    //                       ],
+                    //                     ),
+                    //                   ),
+                    //                 ),
+                    //               ],
+                    //             ),
+                    //           ),
+                    //         ).animateOnPageLoad(animationsMap[
+                    //         'containerOnPageLoadAnimation2']!),
+                    //       ],
+                    //     ),
+                    //     Stack(
+                    //       children: [
+                    //         Container(
+                    //           width: double.infinity,
+                    //           decoration: BoxDecoration(
+                    //             color: FlutterFlowTheme.of(context)
+                    //                 .primaryBackground,
+                    //           ),
+                    //           child: Padding(
+                    //             padding: EdgeInsetsDirectional.fromSTEB(
+                    //                 12, 0, 12, 0),
+                    //             child: Row(
+                    //               mainAxisSize: MainAxisSize.max,
+                    //               crossAxisAlignment: CrossAxisAlignment.start,
+                    //               children: [
+                    //                 Column(
+                    //                   mainAxisSize: MainAxisSize.max,
+                    //                   children: [
+                    //                     Container(
+                    //                       width: 36,
+                    //                       height: 36,
+                    //                       decoration: BoxDecoration(
+                    //                         color: FlutterFlowTheme.of(context)
+                    //                             .alternate,
+                    //                         shape: BoxShape.circle,
+                    //                       ),
+                    //                       child: Padding(
+                    //                         padding: EdgeInsets.all(8),
+                    //                         child: Icon(
+                    //                           Icons.access_time_rounded,
+                    //                           color:
+                    //                           FlutterFlowTheme.of(context)
+                    //                               .secondaryText,
+                    //                           size: 20,
+                    //                         ),
+                    //                       ),
+                    //                     ),
+                    //                     Container(
+                    //                       width: 4,
+                    //                       height: 60,
+                    //                       decoration: BoxDecoration(
+                    //                         color: FlutterFlowTheme.of(context)
+                    //                             .alternate,
+                    //                       ),
+                    //                     ),
+                    //                   ],
+                    //                 ),
+                    //                 Expanded(
+                    //                   child: Padding(
+                    //                     padding: EdgeInsetsDirectional.fromSTEB(
+                    //                         12, 0, 0, 0),
+                    //                     child: Column(
+                    //                       mainAxisSize: MainAxisSize.max,
+                    //                       crossAxisAlignment:
+                    //                       CrossAxisAlignment.start,
+                    //                       children: [
+                    //                         Text(
+                    //                           'In Bay -- Changing Oil',
+                    //                           style:
+                    //                           FlutterFlowTheme.of(context)
+                    //                               .headlineSmall,
+                    //                         ),
+                    //                         Text(
+                    //                           'Started at: 4:43pm',
+                    //                           style:
+                    //                           FlutterFlowTheme.of(context)
+                    //                               .bodySmall,
+                    //                         ),
+                    //                         Padding(
+                    //                           padding: EdgeInsetsDirectional
+                    //                               .fromSTEB(0, 4, 0, 0),
+                    //                           child: Text(
+                    //                             'Your car is currently in the bay and our technicians are changing your oil right now.',
+                    //                             style:
+                    //                             FlutterFlowTheme.of(context)
+                    //                                 .bodySmall,
+                    //                           ),
+                    //                         ),
+                    //                       ],
+                    //                     ),
+                    //                   ),
+                    //                 ),
+                    //               ],
+                    //             ),
+                    //           ),
+                    //         ).animateOnPageLoad(animationsMap[
+                    //         'containerOnPageLoadAnimation3']!),
+                    //       ],
+                    //     ),
+                    //     Container(
+                    //       width: double.infinity,
+                    //       decoration: BoxDecoration(
+                    //         color:
+                    //         FlutterFlowTheme.of(context).primaryBackground,
+                    //       ),
+                    //       child: Padding(
+                    //         padding:
+                    //         EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
+                    //         child: Row(
+                    //           mainAxisSize: MainAxisSize.max,
+                    //           crossAxisAlignment: CrossAxisAlignment.start,
+                    //           children: [
+                    //             Column(
+                    //               mainAxisSize: MainAxisSize.max,
+                    //               children: [
+                    //                 Container(
+                    //                   width: 36,
+                    //                   height: 36,
+                    //                   decoration: BoxDecoration(
+                    //                     color: FlutterFlowTheme.of(context)
+                    //                         .primaryText,
+                    //                     shape: BoxShape.circle,
+                    //                   ),
+                    //                   child: Padding(
+                    //                     padding: EdgeInsets.all(8),
+                    //                     child: Icon(
+                    //                       Icons.check_rounded,
+                    //                       color: FlutterFlowTheme.of(context)
+                    //                           .secondaryBackground,
+                    //                       size: 20,
+                    //                     ),
+                    //                   ),
+                    //                 ),
+                    //                 Container(
+                    //                   width: 4,
+                    //                   height: 60,
+                    //                   decoration: BoxDecoration(
+                    //                     color: FlutterFlowTheme.of(context)
+                    //                         .primaryText,
+                    //                   ),
+                    //                 ),
+                    //               ],
+                    //             ),
+                    //             Expanded(
+                    //               child: Padding(
+                    //                 padding: EdgeInsetsDirectional.fromSTEB(
+                    //                     12, 0, 0, 0),
+                    //                 child: Column(
+                    //                   mainAxisSize: MainAxisSize.max,
+                    //                   crossAxisAlignment:
+                    //                   CrossAxisAlignment.start,
+                    //                   children: [
+                    //                     Text(
+                    //                       'Preparation',
+                    //                       style: FlutterFlowTheme.of(context)
+                    //                           .headlineSmall,
+                    //                     ),
+                    //                     Text(
+                    //                       'Completed at: 4:42pm',
+                    //                       style: FlutterFlowTheme.of(context)
+                    //                           .bodySmall,
+                    //                     ),
+                    //                     Padding(
+                    //                       padding:
+                    //                       EdgeInsetsDirectional.fromSTEB(
+                    //                           0, 4, 0, 0),
+                    //                       child: Text(
+                    //                         'Our team is prepping the bay and your car in order for our techs to be able to change your oil.',
+                    //                         style: FlutterFlowTheme.of(context)
+                    //                             .bodySmall,
+                    //                       ),
+                    //                     ),
+                    //                   ],
+                    //                 ),
+                    //               ),
+                    //             ),
+                    //           ],
+                    //         ),
+                    //       ),
+                    //     ).animateOnPageLoad(
+                    //         animationsMap['containerOnPageLoadAnimation4']!),
+                    //     Container(
+                    //       width: double.infinity,
+                    //       decoration: BoxDecoration(
+                    //         color:
+                    //         FlutterFlowTheme.of(context).primaryBackground,
+                    //       ),
+                    //       child: Padding(
+                    //         padding:
+                    //         EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
+                    //         child: Row(
+                    //           mainAxisSize: MainAxisSize.max,
+                    //           crossAxisAlignment: CrossAxisAlignment.start,
+                    //           children: [
+                    //             Column(
+                    //               mainAxisSize: MainAxisSize.max,
+                    //               children: [
+                    //                 Container(
+                    //                   width: 36,
+                    //                   height: 36,
+                    //                   decoration: BoxDecoration(
+                    //                     color: FlutterFlowTheme.of(context)
+                    //                         .primaryText,
+                    //                     shape: BoxShape.circle,
+                    //                   ),
+                    //                   child: Padding(
+                    //                     padding: EdgeInsets.all(8),
+                    //                     child: Icon(
+                    //                       Icons.check_rounded,
+                    //                       color: FlutterFlowTheme.of(context)
+                    //                           .secondaryBackground,
+                    //                       size: 20,
+                    //                     ),
+                    //                   ),
+                    //                 ),
+                    //                 Container(
+                    //                   width: 4,
+                    //                   height: 60,
+                    //                   decoration: BoxDecoration(
+                    //                     color: FlutterFlowTheme.of(context)
+                    //                         .primaryText,
+                    //                     borderRadius: BorderRadius.only(
+                    //                       bottomLeft: Radius.circular(4),
+                    //                       bottomRight: Radius.circular(4),
+                    //                       topLeft: Radius.circular(0),
+                    //                       topRight: Radius.circular(0),
+                    //                     ),
+                    //                   ),
+                    //                 ),
+                    //               ],
+                    //             ),
+                    //             Expanded(
+                    //               child: Padding(
+                    //                 padding: EdgeInsetsDirectional.fromSTEB(
+                    //                     12, 0, 0, 0),
+                    //                 child: Column(
+                    //                   mainAxisSize: MainAxisSize.max,
+                    //                   crossAxisAlignment:
+                    //                   CrossAxisAlignment.start,
+                    //                   children: [
+                    //                     Text(
+                    //                       'Checked In',
+                    //                       style: FlutterFlowTheme.of(context)
+                    //                           .headlineSmall,
+                    //                     ),
+                    //                     Text(
+                    //                       'Checked in at: 4:30pm',
+                    //                       style: FlutterFlowTheme.of(context)
+                    //                           .bodySmall,
+                    //                     ),
+                    //                     Padding(
+                    //                       padding:
+                    //                       EdgeInsetsDirectional.fromSTEB(
+                    //                           0, 4, 0, 0),
+                    //                       child: Text(
+                    //                         'Your car has been checked in and is waiting for an open bay in order to be worked on.',
+                    //                         style: FlutterFlowTheme.of(context)
+                    //                             .bodySmall,
+                    //                       ),
+                    //                     ),
+                    //                   ],
+                    //                 ),
+                    //               ),
+                    //             ),
+                    //           ],
+                    //         ),
+                    //       ),
+                    //     ).animateOnPageLoad(
+                    //         animationsMap['containerOnPageLoadAnimation5']!),
+                    //   ],
+                    // ),
+
+                    SingleChildScrollView(
+                      padding: EdgeInsets.all(16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Car Number: ${visit?.carNumber}",
+                            style: TextStyle(fontSize: 18),
                           ),
-                          child: Padding(
-                            padding:
-                            EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Container(
-                                      width: 36,
-                                      height: 36,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: Padding(
-                                        padding: EdgeInsets.all(8),
-                                        child: Icon(
-                                          Icons.check_rounded,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          size: 20,
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 4,
-                                      height: 60,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Expanded(
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        12, 0, 0, 0),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'Preparation',
-                                          style: FlutterFlowTheme.of(context)
-                                              .headlineSmall,
-                                        ),
-                                        Text(
-                                          'Completed at: 4:42pm',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodySmall,
-                                        ),
-                                        Padding(
-                                          padding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              0, 4, 0, 0),
-                                          child: Text(
-                                            'Our team is prepping the bay and your car in order for our techs to be able to change your oil.',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodySmall,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
+                          SizedBox(height: 8),
+                          Text(
+                            "Service Type: ${visit?.type}",
+                            style: TextStyle(fontSize: 18),
                           ),
-                        ).animateOnPageLoad(
-                            animationsMap['containerOnPageLoadAnimation4']!),
-                        Container(
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            color:
-                            FlutterFlowTheme.of(context).primaryBackground,
+                          SizedBox(height: 8),
+                          Text(
+                            "Expected Date: ${visit?.expectedDate?.day}/${visit?.expectedDate?.month}/${visit?.expectedDate?.year}",
+                            style: TextStyle(fontSize: 18),
                           ),
-                          child: Padding(
-                            padding:
-                            EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Container(
-                                      width: 36,
-                                      height: 36,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: Padding(
-                                        padding: EdgeInsets.all(8),
-                                        child: Icon(
-                                          Icons.check_rounded,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          size: 20,
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 4,
-                                      height: 60,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        borderRadius: BorderRadius.only(
-                                          bottomLeft: Radius.circular(4),
-                                          bottomRight: Radius.circular(4),
-                                          topLeft: Radius.circular(0),
-                                          topRight: Radius.circular(0),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Expanded(
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        12, 0, 0, 0),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'Checked In',
-                                          style: FlutterFlowTheme.of(context)
-                                              .headlineSmall,
-                                        ),
-                                        Text(
-                                          'Checked in at: 4:30pm',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodySmall,
-                                        ),
-                                        Padding(
-                                          padding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              0, 4, 0, 0),
-                                          child: Text(
-                                            'Your car has been checked in and is waiting for an open bay in order to be worked on.',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodySmall,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
+                          SizedBox(height: 16),
+                          Text(
+                            "Services:",
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold),
                           ),
-                        ).animateOnPageLoad(
-                            animationsMap['containerOnPageLoadAnimation5']!),
-                      ],
+                          SizedBox(height: 8),
+                          Column(
+                            children: visit!.services.map((service) {
+                              return ListTile(
+                                title: Text(service.name!),
+                                subtitle: Text("\$${service.price}"),
+                                trailing: Text(service.state!),
+
+                              );
+                            }).toList(),
+                          ),
+                          SizedBox(height: 16),
+                          Text(
+                            "Additions:",
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(height: 8),
+                          Column(
+                            children: visit!.additions.map((addition) {
+                              return ListTile(
+                                title: Text(addition.name!),
+                                subtitle: Text("\$${addition.price}"),
+                              );
+                            }).toList(),
+                          ),
+                          SizedBox(height: 16),
+                          Text(
+                            "Components:",
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(height: 8),
+                          Column(
+                            children: visit!.components.map((component) {
+                              return ListTile(
+                                title: Text(component.name!),
+                                subtitle: Text(
+                                    "\$${component.price} x ${component.quantity}"),
+                              );
+                            }).toList(),
+                          ),
+                          SizedBox(height: 16),
+                          Text(
+                            "Price After Discount: \$${visit?.priceAfterDiscount}",
+                            style: TextStyle(fontSize: 18),
+                          ),
+                          SizedBox(height: 16),
+                          Text(
+                            "Completion Ratio: ${visit?.completedServicesRatio}%",
+                            style: TextStyle(fontSize: 18),
+                          ),
+                          SizedBox(height: 16),
+                          Text(
+                            "State: ${visit?.state}",
+                            style: TextStyle(fontSize: 18),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -796,8 +887,7 @@ class _ServicesDetailsState extends State<ServicesDetails>
               focusColor: Colors.transparent,
               hoverColor: Colors.transparent,
               highlightColor: Colors.transparent,
-              onTap: () {
-
+              onTap: () async {
               },
               child: Container(
                 width: double.infinity,
@@ -823,11 +913,11 @@ class _ServicesDetailsState extends State<ServicesDetails>
                     'Bill',
                     textAlign: TextAlign.center,
                     style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      fontFamily: 'Outfit',
-                      color: Colors.white,
-                      fontSize: 22,
-                      fontWeight: FontWeight.w500,
-                    ),
+                          fontFamily: 'Outfit',
+                          color: Colors.white,
+                          fontSize: 22,
+                          fontWeight: FontWeight.w500,
+                        ),
                   ),
                 ),
               ),

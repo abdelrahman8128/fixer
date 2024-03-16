@@ -48,9 +48,14 @@ class _LoginStateState extends State<Login> {
         if (state is AppLoginSuccessState)
           {
 
-             Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Layout(),));
-             showToast('Login Successfully');
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Layout(),
+                ));
+            showToast('Login Successfully');
           }
+
         else if (state is AppLoginErrorState)
           {
             print(state.error);
