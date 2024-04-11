@@ -111,7 +111,7 @@ class AppCubit extends Cubit<AppCubitStates> {
   void getCarServicesByNumber({
     required String carNumber,
   }) async{
-    if (getCarByNumberModel == null)
+    if (getServicesModel == null)
     {
       emit(AppGetCarServicesByNumberLoadingState());
       String url =
