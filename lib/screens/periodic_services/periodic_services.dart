@@ -1,11 +1,8 @@
-import 'package:fixer_app/screens/services_detailes/services_details.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-
-import '../../models/get_services_model.dart';
 import 'periodic_services_model.dart';
 export 'periodic_services_model.dart';
 
@@ -214,9 +211,7 @@ class _PeriodicServicesState extends State<PeriodicServices>
                       );
                     }
                     else {
-                      if (false) {
-                        return Container();
-                      }
+
                       return ListView(
                         padding: EdgeInsets.zero,
                         primary: false,
@@ -424,9 +419,7 @@ class _PeriodicServicesState extends State<PeriodicServices>
                       );
                     }
                     else {
-                      if (false) {
-                        return Container();
-                      }
+
                       return ListView.builder(
                         padding: EdgeInsets.zero,
                         primary: false,

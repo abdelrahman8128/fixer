@@ -1,7 +1,6 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:fixer_app/cubit/cubit.dart';
 import 'package:fixer_app/cubit/states.dart';
-import 'package:fixer_app/screens/services_detailes/services_details.dart';
 import 'package:fixer_app/shared/components.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
@@ -208,15 +207,13 @@ class _ServicesPageState extends State<ServicesPage>
                                 );
                               }
                               else {
-                                if (false) {
-                                  return Container();
-                                }
+
                                 return ListView.builder(
                                   padding: EdgeInsets.zero,
                                   primary: false,
                                   shrinkWrap: true,
                                   scrollDirection: Axis.vertical,
-                                  itemCount: AppCubit.get(context).getServicesModel!.visits.length,
+                                  itemCount: AppCubit.get(context).getServicesModel?.visits.length,
                                   itemBuilder: (context, index) =>serviceItemBuilder(AppCubit.get(context).getServicesModel!.visits[index]),
                                 );
                               }

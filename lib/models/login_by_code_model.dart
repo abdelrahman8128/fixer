@@ -1,49 +1,51 @@
-import 'package:fixer_app/screens/login/login.dart';
 
 class LoginByCodeModel{
+  LoginByCodeModel();
 String? token;
 LoginByCodeDataModel? userData;
 GetCarByNumberModel? carData;
-LoginByCodeModel.fromJson(Map<String,dynamic>json)
+LoginByCodeModel.fromJson(Map<String,dynamic>?json)
 
 {
-  token=json['token'];
-  userData=LoginByCodeDataModel.fromJson(json['data']['user']);
-  carData=GetCarByNumberModel.fromJson(json['data']['car']);
+  token=json?['token'];
+  userData=LoginByCodeDataModel.fromJson(json?['data']['user']);
+  carData=GetCarByNumberModel.fromJson(json?['data']['car']);
 }
 
 
 }
 
 class LoginByCodeDataModel{
+  LoginByCodeDataModel();
 
   String? id;
   String? name;
   String? email;
   String? role;
   bool? active;
-  String? Car;
+  String? car;
   String? carCode;
   String? carNumber=null;
   String? createdAt;
   String? updatedAt;
-  LoginByCodeDataModel.fromJson(Map<String,dynamic>json)
+  LoginByCodeDataModel.fromJson(Map<String,dynamic>?json)
   {
-    id=json['_id'];
-    name=json['name'];
-    email=json['email'];
-    role=json['role'];
-    active=json['active'];
-    Car=json['Car'];
-    carCode=json['carCode'];
-    carNumber=json['carNumber'];
-    createdAt=json['createdAt'];
-    updatedAt=json['updatedAt'];
+    id=json?['_id'];
+    name=json?['name'];
+    email=json?['email'];
+    role=json?['role'];
+    active=json?['active'];
+    car=json?['Car'];
+    carCode=json?['carCode'];
+    carNumber=json?['carNumber'];
+    createdAt=json?['createdAt'];
+    updatedAt=json?['updatedAt'];
 
   }
 
 }
 class GetCarByNumberModel{
+  GetCarByNumberModel();
 
   String? id;
   String? ownerName;
@@ -64,32 +66,32 @@ class GetCarByNumberModel{
   int? distance;
   String?motorNumber;
   List<dynamic>?componentState;
-  DateTime?nextRepairDate;
-  DateTime?lastRepairDate;
+  String?nextRepairDate;
+  String?lastRepairDate;
 
-  GetCarByNumberModel.fromJson(Map<String,dynamic>json)
+  GetCarByNumberModel.fromJson(Map<String,dynamic>?json)
   {
-    state=json['State'];
-    id=json['_id'];
-    ownerName=json['ownerName'];
-    carNumber=json['carNumber'];
-    phoneNumber=json['phoneNumber'];
-    email=json['email'];
-    carIdNumber=json['carIdNumber'];
-    color=json['color'];
-    brand=json['brand'];
-    category=json['category'];
-    model=json['model'];
-    generatedCode=json['generatedCode'];
-    generatedPassword=json['generatedPassword'];
-    periodicRepairs=json['periodicRepairs'];
-    nonPeriodicRepairs=json['nonPeriodicRepairs'];
-    repairing=json['repairing'];
-    componentState=json['componentState'];
-    motorNumber=json['motorNumber'];
-    nextRepairDate=DateTime.parse(json['nextRepairDate']);
-    lastRepairDate=DateTime.parse(json['lastRepairDate']);
-
+    state=json?['State'];
+    id=json?['_id'];
+    ownerName=json?['ownerName'];
+    carNumber=json?['carNumber'];
+    phoneNumber=json?['phoneNumber'];
+    email=json?['email'];
+    carIdNumber=json?['carIdNumber'];
+    color=json?['color'];
+    brand=json?['brand'];
+    category=json?['category'];
+    model=json?['model'];
+    generatedCode=json?['generatedCode'];
+    generatedPassword=json?['generatedPassword'];
+    periodicRepairs=json?['periodicRepairs'];
+    nonPeriodicRepairs=json?['nonPeriodicRepairs'];
+    repairing=json?['repairing'];
+    componentState=json?['componentState'];
+    motorNumber=json?['motorNumber'];
+    nextRepairDate=json?['nextRepairDate'];
+    lastRepairDate=json?['lastRepairDate'];
+    distance=json?['distances'];
 
 
 

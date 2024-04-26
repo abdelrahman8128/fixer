@@ -7,18 +7,11 @@ import 'package:flutter/services.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:pdf/pdf.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../models/get_services_model.dart';
 import '../screens/services_detailes/services_details.dart';
 import 'dart:io';
 import 'package:pdf/widgets.dart' as pw;
-import 'dart:io';
-import 'package:flutter/material.dart';
-import 'package:pdf/pdf.dart';
-import 'package:pdf/widgets.dart' as pw;
-import 'package:path_provider/path_provider.dart';
 
 
 void showToast(String text) => Fluttertoast.showToast(

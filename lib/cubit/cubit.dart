@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:dio/dio.dart';
 import 'package:fixer_app/cubit/states.dart';
 import 'package:fixer_app/models/Forget_password_model.dart';
 import 'package:fixer_app/models/get_home_prams_model.dart';
@@ -8,9 +7,7 @@ import 'package:fixer_app/shared/components.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:http/http.dart';
-import 'package:http/http.dart';
 
-import '../models/get_car_by_number_model.dart';
 import '../models/get_services_model.dart';
 import '../network/end_points.dart';
 import '../network/remote/dio_helper.dart';
@@ -19,16 +16,26 @@ class AppCubit extends Cubit<AppCubitStates> {
   AppCubit() : super(AppInitialState());
   static AppCubit get(context) => BlocProvider.of(context);
 
-  LoginByCodeModel? loginByCodeModel;
-  ForgetPasswordModel? forgetPasswordModel;
-  GetCarByNumberModel? getCarByNumberModel=null;
-  GetServicesModel?getServicesModel;
-  GetHomePramsModel?getHomePramsModel=null;
+  LoginByCodeModel? loginByCodeModel=LoginByCodeModel();
+  ForgetPasswordModel? forgetPasswordModel=ForgetPasswordModel();
+  GetCarByNumberModel? getCarByNumberModel=GetCarByNumberModel();
+  GetServicesModel?getServicesModel=GetServicesModel();
+  GetHomePramsModel?getHomePramsModel=GetHomePramsModel();
+
+
   Future<Null> loginByCode({
     required String carCode,
     required password,
   }) async {
     emit(AppLoginLoadingState());
+
+     loginByCodeModel=LoginByCodeModel();
+     forgetPasswordModel=ForgetPasswordModel();
+     getCarByNumberModel=GetCarByNumberModel();
+    getServicesModel=GetServicesModel();
+    getHomePramsModel=GetHomePramsModel();
+
+
 
     return await DioHelper.postDate(
       url: LOGIN,
@@ -111,8 +118,7 @@ class AppCubit extends Cubit<AppCubitStates> {
   void getCarServicesByNumber({
     required String carNumber,
   }) async{
-    if (getServicesModel == null)
-    {
+
       emit(AppGetCarServicesByNumberLoadingState());
       String url =
           'https://fixer-backend-1.onrender.com/api/V1/repairing/'+carNumber;
@@ -136,24 +142,21 @@ class AppCubit extends Cubit<AppCubitStates> {
       }
       );
     }
-  }
+
 
   void getHomePrams({
       required String carNumber,
-  }) async{
-    if (getHomePramsModel == null)
-    {
-
+  }) {
       String url = 'https://fixer-backend-1.onrender.com/api/V1/Home/'+carNumber;
       final headers = {'Content-Type': 'application/json'};
-      return await read(
+       read(
         Uri.parse(url),
         headers: headers,
       ).then((response) {
+        print (response);
         getHomePramsModel =
             GetHomePramsModel.fromJson(jsonDecode(response));
         if (getHomePramsModel !=null) {
-          print('daret ya sey3');
           emit(AppGetHomePramsSuccessState());
         } else {
           emit(AppGetHomePramsErrorState(response.toString()));
@@ -166,4 +169,4 @@ class AppCubit extends Cubit<AppCubitStates> {
 
 //94162179
 //877E92C741DF
-}
+

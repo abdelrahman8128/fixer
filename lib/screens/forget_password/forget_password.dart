@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../cubit/cubit.dart';
 import '../../cubit/states.dart';
-import '../login/login.dart';
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key});
@@ -224,6 +223,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
 
                           ),
                         ),
+                        SizedBox(width:20),
                         Expanded(
                           child: TextFormField(
                             controller: carIdNum,
@@ -306,7 +306,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                             onPressed: () {
                               if (formKey.currentState!.validate())
                               {
-                                AppCubit.get(context).forgotPassword(carCode: codeController.text, carNumber: carIdNum.text+' '+carIdChar.text);
+                                AppCubit.get(context).forgotPassword(carCode: codeController.text, carNumber: carIdNum.text+carIdChar.text);
 
                               }
 

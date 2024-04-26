@@ -11,7 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:http/http.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 import 'home_page_model.dart';
@@ -61,8 +60,8 @@ class _HomePageState extends State<HomePage>
 
   @override
   void initState() {
+    AppCubit.get(context).getHomePrams(carNumber: AppCubit.get(context).loginByCodeModel!.carData!.carNumber!);
     super.initState();
-    AppCubit.get(context).getHomePrams(carNumber: AppCubit.get(context).loginByCodeModel!.userData!.carNumber!);
 
     _model = createModel(context, () => HomePageModel());
 
@@ -507,7 +506,7 @@ class _HomePageState extends State<HomePage>
                                 padding:
                                 EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
                                 child: AutoSizeText(
-                                  '${AppCubit.get(context).getHomePramsModel?.nextRepairDate?.day}/${AppCubit.get(context).getHomePramsModel?.nextRepairDate?.month}/${AppCubit.get(context).getHomePramsModel?.nextRepairDate?.year}',
+                                  '${(AppCubit.get(context).getHomePramsModel?.nextRepairDate?.day)??'-'}/${(AppCubit.get(context).getHomePramsModel?.nextRepairDate?.month)??'-'}/${(AppCubit.get(context).getHomePramsModel?.nextRepairDate?.year)??'-'}',
                                   textAlign: TextAlign.center,
                                   style: FlutterFlowTheme.of(context)
                                       .titleMedium

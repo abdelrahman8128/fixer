@@ -1,7 +1,6 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:fixer_app/cubit/cubit.dart';
 import 'package:fixer_app/cubit/states.dart';
-import 'package:fixer_app/network/remote/dio_helper.dart';
 import 'package:fixer_app/screens/forget_password/forget_password.dart';
 import 'package:fixer_app/screens/layout/layout.dart';
 import 'package:fixer_app/shared/components.dart';
@@ -11,11 +10,9 @@ import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:ui' as ui;
 
-import '../../network/end_points.dart';
 
 
 class Login extends StatefulWidget {
